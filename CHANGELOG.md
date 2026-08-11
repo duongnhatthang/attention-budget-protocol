@@ -11,6 +11,11 @@ affect how the harness is used or distributed.
   archive. The compact table stays inline in `HARNESS.md`, which remains self-contained.
 - `ADAPTING.md` folded into the README's "Adapting it to another domain" section; `CONTRIBUTING.md`
   folded into `examples/README.md` and the README's "Contributing" section.
+- **Precondition ledger vocabulary renamed** in `HARNESS.md` for plainness: `discharged by` becomes
+  `met by` and `NOT DISCHARGED` becomes `NOT MET`. Terminology only; the mechanism is unchanged.
+- **README trimmed and reordered.** "What the harness does" is now ordered by importance; the
+  domain-generalization claims were softened; duplicated statements of the rule-admission criterion
+  were removed.
 
 ## v0.3
 

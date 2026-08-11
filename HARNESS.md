@@ -72,12 +72,12 @@ Fill it before writing any proof. This is a mechanical check; do it mechanically
 
 **C. Precondition ledger.** For every cited result the delta relies on, list its hypotheses **one
 per row, in the source's own words**, and for each row give either the specific line of the new
-construction that establishes it, or `NOT DISCHARGED`.
+construction that establishes it, or `NOT MET`.
 
-| cited result | hypothesis (verbatim) | discharged by | status |
+| cited result | hypothesis (verbatim) | met by | status |
 |---|---|---|---|
 
-A single `NOT DISCHARGED` row kills the delta. It is not a thing to argue around. Report it and
+A single `NOT MET` row kills the delta. It is not a thing to argue around. Report it and
 offer options: (a) modify the construction, (b) prove a replacement for the cited result, (c)
 pick a different baseline, (d) abandon this delta. **Choosing among these is the user's decision,
 not yours.**
@@ -100,7 +100,7 @@ not yours.**
 
 ## The standing log
 
-Open items (unquoted sources, unproven lemmas, undischarged preconditions, unread proofs)
+Open items (unquoted sources, unproven lemmas, unmet preconditions, unread proofs)
 live in **one maintained file**, not in the body of messages. Each entry has an ID, a one-line
 plain-language description, and a status. The file is rewritten when it changes.
 
@@ -154,7 +154,7 @@ Too long, and unusable after a few days:
 > exact hypotheses are unverified. NOT CHECKED: (i) WK08 eq. (7) hypotheses: blocks both the
 > mirror observation and the framing's fine print; (ii) whether bounded, exactly-unbiased
 > estimators exist under unknown noise; (iii) prior log unchanged: B1/O1/O2 unproven, L4 NOT
-> DISCHARGED, L9, [DWZ24] App. E, [KN19] Alg-1 box, rank-m literature unsearched. FAILS HERE
+> MET, L9, [DWZ24] App. E, [KN19] Alg-1 box, rank-m literature unsearched. FAILS HERE
 > FIRST: the granularity argument, a framing, not a theorem …
 
 Same content, usable cold:

@@ -17,5 +17,5 @@ look applicable, and the model reaches for it precisely when a check has failed.
 
 ## Fix
 Precondition ledger: hypotheses one per row, verbatim, each mapped to a line that establishes it
-or marked `NOT DISCHARGED`. Narrative justification of lemma reuse is banned outright. One
-undischarged row kills the proposal, and arguing around it in prose is not allowed.
+or marked `NOT MET`. Narrative justification of lemma reuse is banned outright. One
+unmet row kills the proposal, and arguing around it in prose is not allowed.
