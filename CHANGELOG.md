@@ -3,6 +3,27 @@
 This log tracks the harness itself (`HARNESS.md`). Repository-level changes are noted where they
 affect how the harness is used or distributed.
 
+## v0.4
+
+- **Phase gates redesigned** to match how the harness is actually used and to read domain-neutrally
+  (the proof-specific artifacts are kept). The spine is now `Ground -> Plan -> Execute -> Assemble`,
+  mirroring an explore-plan-execute loop:
+  - **Phase 0 (Ground):** user gives the goal and material; the model restates the goal, quotes the
+    sources verbatim, and may ask clarifying questions. Was "Target" (diagnose one term).
+  - **Phase 1 (Plan):** the model offers 2-3 candidate routes when there is a real fork, then a
+    one-line-per-step skeleton with the crux marked, for the user to edit or approve. New.
+  - **Phase 2 (Execute):** work the approved plan one step per turn, artifacts per step, proving the
+    crux here. This is where exploration and weakness-probing happen. Merges the old "Delta" spec
+    step with proving the crux.
+  - **Phase 3 (Assemble):** consolidate accepted steps into the finished write-up, on request only.
+- **Banned-move rescoped:** "no alternative approaches / one delta" now applies to Phase 2 and later
+  only. Comparing routes is Phase 1's explicit job.
+- **Session opener generalized** from `Baseline / Term to attack` to `Goal / Material`.
+- **README "Status" section added,** disclosing what is tested (Phases 0-2) and untested (Phase 3
+  assembly, cross-model verification split, cheap filters). The verification-split bullet now notes
+  the cross-model part is untested and was moved below the precondition ledger.
+- Leftover "delta" wording swapped to "step" for consistency with the new spine.
+
 ## Repository
 
 - **Relicensed to MIT** (was CC BY 4.0) so it can be reused and redistributed as freely as

@@ -37,13 +37,15 @@ hunting for them. The rules, roughly in order of how much they matter:
   length budget, and exceeding it is itself a failure.
 - **Verbatim quoting.** Every external result is quoted in its source's own notation and numbering.
   Anything that cannot be quoted is marked as such and blocks the step. No paraphrase, no renaming.
-- **A verification split.** The model cannot reliably check work it just produced. A finished
-  result is carried into a fresh conversation, ideally a different model, with only its statement
-  and proof, for an adversarial prove-or-disprove pass.
 - **A precondition ledger.** Before reusing a result you rely on, its conditions are listed one per
   row, and each is matched to the exact line that satisfies it or flagged as unmet. One unmet
   condition stops the step, and talking around it in prose is banned. This is the single most
   common way a wrong step survives.
+- **A verification split.** A model cannot reliably check work it just produced; its confidence in
+  its own output is meaningless here. So a finished result is meant to be carried into a fresh
+  conversation, ideally a different model, with only its statement and proof, for an adversarial
+  prove-or-disprove pass. (The cross-model part is a recommendation I have not yet tested; see
+  Status.)
 - **A type table.** Every object gets a row saying what kind of thing it is and what values it may
   take. Mechanical and boring, and it catches whole classes of confident error before any reasoning
   starts.
@@ -59,6 +61,20 @@ generating side cannot quietly spend the verifier's budget.
 It has been used seriously in one project by one researcher. There is no controlled evaluation and
 no claim that it generalizes. It is published because the failure mode is common and the fix was
 not obvious.
+
+## Status
+
+This has been used in one setting, a theoretical RL proof effort, and much of it is untested.
+Concretely:
+
+- **Phases 0-2 (Ground, Plan, Execute):** used regularly. This is the tested core.
+- **Phase 3 (Assemble the final artifact):** rarely reached. In practice the work stayed in Phase 2,
+  digging into steps and weaknesses, and never consolidated a finished write-up through the harness.
+- **Verification split with a different model:** untested. That a model cannot reliably check its
+  own work still holds; carrying a result to a *different* model is a recommendation I have not run.
+- **Optional cheap filters (symbolic checks, stress tests, simulation):** untested.
+
+Treat the untested parts as hypotheses, not established practice.
 
 ## Files
 
