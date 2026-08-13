@@ -1,4 +1,4 @@
-# A harness for AI-assisted reasoning in domains with no verifier
+# An attention-budget protocol for AI-assisted reasoning
 
 Formal mathematics has Lean. Software has tests. Empirical machine learning has benchmarks. Large
 parts of research have none of these.
@@ -27,7 +27,7 @@ Three properties of expert verification drive the whole design.
 So the goal is not to produce a proof. It is to produce **the smallest object the researcher can
 check**, and then stop and wait.
 
-## What the harness does
+## What the protocol does
 
 It does not make the model more accurate. It forces every unsupported step to surface as an
 explicit gap instead of hiding in prose, so your attention goes to catching errors rather than
@@ -46,6 +46,10 @@ hunting for them. The rules, roughly in order of how much they matter:
   conversation, ideally a different model, with only its statement and proof, for an adversarial
   prove-or-disprove pass. (The cross-model part is a recommendation I have not yet tested; see
   Status.)
+- **A clean working surface.** The model may reason freely in the background, but what it presents
+  must keep the current question and larger plan easy to see. When the context changes substantially,
+  it gives a self-contained summary that lets the user ignore the earlier conversation and continue
+  from a clear board.
 - **A type table.** Every object gets a row saying what kind of thing it is and what values it may
   take. Mechanical and boring, and it catches whole classes of confident error before any reasoning
   starts.
@@ -69,29 +73,43 @@ Concretely:
 
 - **Phases 0-2 (Ground, Plan, Execute):** used regularly. This is the tested core.
 - **Phase 3 (Assemble the final artifact):** rarely reached. In practice the work stayed in Phase 2,
-  digging into steps and weaknesses, and never consolidated a finished write-up through the harness.
+  digging into steps and weaknesses, and never consolidated a finished write-up through the protocol.
 - **Verification split with a different model:** untested. That a model cannot reliably check its
   own work still holds; carrying a result to a *different* model is a recommendation I have not run.
 - **Optional cheap filters (symbolic checks, stress tests, simulation):** untested.
+
+Two informal comparisons suggest different strengths. On the same math problem, both models
+reached the same conclusion, but ChatGPT 5.6 sol max explained it more clearly than Claude Fable 5
+max. On an unrelated health-planning task, Claude pushed back more readily. ChatGPT became critical
+only when asked, then found holes in Claude's arguments that Claude accepted, while the reverse did
+not happen. These are subjective observations, not an evaluation.
+
+Clarity matters beyond style. The model's output becomes the working space that the user reads,
+revisits, questions, and builds on throughout the session. If that space is hard to parse, attention
+is spent navigating the answer instead of reasoning. I have spent more time working with Claude,
+but often find its answers harder to parse. ChatGPT's cleaner presentation has left more room for
+follow-up questions, new ideas, and discoveries. In one case, seeing the big picture clearly in a
+ChatGPT answer helped me make a non-trivial step toward a key lemma. What the model presents should
+therefore be organized carefully and remain easy to understand and navigate.
 
 Treat the untested parts as hypotheses, not established practice.
 
 ## Files
 
-**You only need one file: [`HARNESS.md`](HARNESS.md).** Everything else is optional.
+**You only need one file: [`PROTOCOL.md`](PROTOCOL.md).** Everything else is optional.
 
 | File | What it is |
 |---|---|
-| [`HARNESS.md`](HARNESS.md) | The harness. Self-contained: paste it into project instructions or a system prompt. |
+| [`PROTOCOL.md`](PROTOCOL.md) | The protocol. Self-contained: paste it into project instructions or a system prompt. |
 | [`examples/`](examples/) | Optional, searchable archive of the failures each rule exists to prevent, one per file. |
 | [`CHANGELOG.md`](CHANGELOG.md) | Version history and the reason for each change. |
 
 ## Using it
 
-Paste `HARNESS.md` into your project instructions or system prompt, and keep a copy with your work
+Paste `PROTOCOL.md` into your project instructions or system prompt, and keep a copy with your work
 so you can diff versions as you tune it. Then work one phase at a time: name what you are building
 on and the single thing to improve, and let the model stop at each phase boundary until you tell it
-to go on. `HARNESS.md` ends with a short opener template for starting a session.
+to go on. `PROTOCOL.md` ends with a short opener template for starting a session.
 
 ## Adapting it to another domain
 
@@ -112,9 +130,9 @@ speculatively.
 
 ## How this is maintained
 
-The process for updating this harness is not rigorous, and you should know that before relying on
+The process for updating this protocol is not rigorous, and you should know that before relying on
 it. It is maintained mostly by one person: a researcher on a theoretical reinforcement-learning
-problem who uses the harness as the instructions for a Claude Project. Changes are made largely on
+problem who uses the protocol as the instructions for a Claude Project. Changes are made largely on
 vibe, a subjective sense of whether they improve the work in front of me. There is no controlled
 evaluation behind any rule.
 
@@ -134,7 +152,7 @@ human's attention is the binding constraint.
 
 ## Contributing
 
-Most valuable: a failure the harness did not catch, added as a case under [`examples/`](examples/)
+Most valuable: a failure the protocol did not catch, added as a case under [`examples/`](examples/)
 (copy [`examples/_template.md`](examples/_template.md)) with the rule you think would have caught
 it. Second: a port to a non-mathematical domain.
 

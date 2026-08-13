@@ -2,7 +2,7 @@
 
 - **Scope:** global
 - **Surfaced in:** theoretical RL
-- **Harness version:** v0.1
+- **Protocol version:** v0.1
 - **Rule it motivated:** Phase gates with hard length budgets; one delta per session; no document before Phase 3.
 
 ## What happened

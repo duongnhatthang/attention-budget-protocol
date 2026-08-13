@@ -2,7 +2,7 @@
 
 - **Scope:** global
 - **Surfaced in:** theoretical RL
-- **Harness version:** v0.1
+- **Protocol version:** v0.1
 - **Rule it motivated:** Type table, filled before any proof is written.
 
 ## What happened

@@ -2,7 +2,7 @@
 
 - **Scope:** global
 - **Surfaced in:** theoretical RL
-- **Harness version:** v0.2
+- **Protocol version:** v0.2
 - **Rule it motivated:** Closing block capped at 70 words; session-local labels only as parenthetical scroll-back aids; standing items kept in one file.
 
 ## What happened
@@ -11,7 +11,7 @@ plus a replayed list of standing open items. Returning after several days, the r
 not decode them without scrolling back through the session.
 
 ## Why it was a problem
-It is the harness's own failure mode: a summary whose decoding cost is externalized onto the
+It is the protocol's own failure mode: a summary whose decoding cost is externalized onto the
 reader. Content correct, artifact unusable.
 
 ## Fix

@@ -3,8 +3,8 @@
 
 - **Scope:** global | project: <slug>   <!-- "global" if the failure mode is domain-general; otherwise name the domain it is specific to -->
 - **Surfaced in:** <domain where it was observed, e.g. theoretical RL>
-- **Harness version:** <version in use when it happened, e.g. v0.3>
-- **Rule it motivated:** <the HARNESS.md rule that now guards against it, or "proposed">
+- **Protocol version:** <version in use when it happened, e.g. v0.3>
+- **Rule it motivated:** <the PROTOCOL.md rule that now guards against it, or "proposed">
 
 ## What happened
 <The thing the model produced. Concrete. Quote the offending output if short.>

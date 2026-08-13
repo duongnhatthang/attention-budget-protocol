@@ -2,7 +2,7 @@
 
 - **Scope:** global
 - **Surfaced in:** theoretical RL
-- **Harness version:** v0.1
+- **Protocol version:** v0.1
 - **Rule it motivated:** Quote block (verbatim, source's own notation); renaming the manuscript's objects is banned.
 
 ## What happened

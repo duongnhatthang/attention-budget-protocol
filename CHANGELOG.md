@@ -1,11 +1,33 @@
 # Changelog
 
-This log tracks the harness itself (`HARNESS.md`). Repository-level changes are noted where they
-affect how the harness is used or distributed.
+This log tracks the protocol itself (`PROTOCOL.md`). Repository-level changes are noted where they
+affect how the protocol is used or distributed.
+
+## Repository, 2026-08-12
+
+- **Artifact renamed from harness to protocol.** This better reflects its scope: a self-contained
+  interaction protocol that runs inside an existing model environment, not a standalone agent
+  harness with its own tools or control loop. `HARNESS.md` is now `PROTOCOL.md`.
+- **README Status updated** with two informal, subjective comparisons of ChatGPT 5.6 sol max and
+  Claude Fable 5 max, plus an observation that model output is the user's working space: clarity and
+  navigability preserve attention for questions, ideas, and further reasoning.
+
+## v0.5
+
+- **Clean working surface added as a protocol rule.** The agent may explore freely in the
+  background, but user-facing output must preserve the current question, its role in the approved
+  plan, and the larger argument. This responds to an observed failure where individually plausible
+  answers were difficult to parse as a continuing research workspace.
+- **Board resets allowed.** When the goal, plan, or context changes substantially, the agent gives a
+  short, self-contained summary of the current goal, accepted results, uncertainties, and next step.
+  The summary should be sufficient for the user to ignore the conversation above it.
+- **Phase 2 orientation added.** Each step begins by naming the step and its role in the approved
+  plan.
+- Added F7 to the compact failure table and `examples/unnavigable-working-space.md` to the archive.
 
 ## v0.4
 
-- **Phase gates redesigned** to match how the harness is actually used and to read domain-neutrally
+- **Phase gates redesigned** to match how the protocol is actually used and to read domain-neutrally
   (the proof-specific artifacts are kept). The spine is now `Ground -> Plan -> Execute -> Assemble`,
   mirroring an explore-plan-execute loop:
   - **Phase 0 (Ground):** user gives the goal and material; the model restates the goal, quotes the
@@ -29,12 +51,12 @@ affect how the harness is used or distributed.
 - **Relicensed to MIT** (was CC BY 4.0) so it can be reused and redistributed as freely as
   possible, no attribution required.
 - **Failure taxonomy moved to `examples/`,** one case per file, as a searchable, contributable
-  archive. The compact table stays inline in `HARNESS.md`, which remains self-contained.
+  archive. The compact table stays inline in `PROTOCOL.md`, which remains self-contained.
 - `ADAPTING.md` folded into the README's "Adapting it to another domain" section; `CONTRIBUTING.md`
   folded into `examples/README.md` and the README's "Contributing" section.
-- **Precondition ledger vocabulary renamed** in `HARNESS.md` for plainness: `discharged by` becomes
+- **Precondition ledger vocabulary renamed** in `PROTOCOL.md` for plainness: `discharged by` becomes
   `met by` and `NOT DISCHARGED` becomes `NOT MET`. Terminology only; the mechanism is unchanged.
-- **README trimmed and reordered.** "What the harness does" is now ordered by importance; the
+- **README trimmed and reordered.** "What the protocol does" is now ordered by importance; the
   domain-generalization claims were softened; duplicated statements of the rule-admission criterion
   were removed.
 
