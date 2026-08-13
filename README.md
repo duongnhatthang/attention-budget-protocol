@@ -24,8 +24,12 @@ Three properties of expert verification drive the whole design.
    not find that out until you reach line 40. And an argument long enough to tire the reader gets
    skimmed, which is how a wrong result gets believed.
 
-So the goal is not to produce a proof. It is to produce **the smallest object the researcher can
-check**, and then stop and wait.
+The final goal is a useful and truthful research product. The protocol's immediate operating goal
+is narrower: produce **the smallest object the researcher can check**, then stop and wait. This
+also leaves room for exploration. A useful intermediate object may be a proof step, a
+counterexample, a short list of genuinely different routes, or a diagnosis of why the current
+route is stuck. What matters is that it advances a research decision without hiding its evidential
+status or consuming more verification attention than necessary.
 
 ## What the protocol does
 
@@ -146,9 +150,27 @@ The design draws on published analyses of how LLM mathematics fails: taxonomies 
 fabrication and premise smuggling (arXiv 2606.24902), the seven failure modes behind the QED
 multi-agent system (arXiv 2604.24021), the human-in-the-loop theorem-proving workflow of Li et al.
 (arXiv 2512.09443, prompts at `github.com/optsuite/MathResearchPrompts`), and the multi-model
-verification split used by Bolzano (arXiv 2604.16989). The contribution here is narrower: a
-single-file discipline for a one-human, one-model collaboration where no verifier exists and the
-human's attention is the binding constraint.
+verification split used by Bolzano (arXiv 2604.16989).
+
+These projects address related problems at different layers:
+
+- **MathResearchPrompts** provides task-specific prompts for research exploration, theorem proving,
+  construction, numerical screening, and production of mathematical artifacts. Its associated work
+  describes a human--AI interactive workflow. This protocol instead governs the interaction itself:
+  what may be produced at each stage, when the human must approve progress, and how unsupported
+  steps are exposed before they expand into a long argument.
+- **QED** uses a multi-agent proof pipeline with decomposition, proof generation, regulation, and
+  separate structural and detailed verification. This protocol assumes that no automatic or
+  model-based verifier is trustworthy enough to remove the human from the critical path. It uses
+  phase gates, verbatim sources, and precondition checks to make that human verification cheaper.
+- **Bolzano** uses parallel model generation, verification, summarization, and a persistent store of
+  findings that survive verification. This protocol targets the smaller setting of one human and
+  one model, and keeps the corresponding state in a compact standing log and clean working surface.
+
+The approaches are complementary. A QED- or Bolzano-like system could supply candidate arguments
+or automated checks inside this protocol, while MathResearchPrompts-style task prompts could be
+used within a phase. The contribution here is the human-facing control layer for settings where no
+verifier can be treated as an oracle and the researcher's attention is the binding constraint.
 
 ## Contributing
 
