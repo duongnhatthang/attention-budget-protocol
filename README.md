@@ -81,6 +81,10 @@ Concretely:
 - **Verification split with a different model:** untested. That a model cannot reliably check its
   own work still holds; carrying a result to a *different* model is a recommendation I have not run.
 - **Optional cheap filters (symbolic checks, stress tests, simulation):** untested.
+- **Experimental proof-map overlay:** untested. It replaces the Phase 1 step list with a dependency
+  graph and shows only the current node's local boundary in Phase 2. It remains outside the protocol
+  until real use shows that it makes a concrete error cheaper to find without consuming more
+  attention than it saves.
 
 Two informal comparisons suggest different strengths. On the same math problem, both models
 reached the same conclusion, but ChatGPT 5.6 sol max explained it more clearly than Claude Fable 5
@@ -106,6 +110,7 @@ Treat the untested parts as hypotheses, not established practice.
 |---|---|
 | [`PROTOCOL.md`](PROTOCOL.md) | The protocol. Self-contained: paste it into project instructions or a system prompt. |
 | [`examples/`](examples/) | Optional, searchable archive of the failures each rule exists to prevent, one per file. |
+| [`experiments/proof-map.md`](experiments/proof-map.md) | Optional, untested proof-map overlay and trial record. It does not change the protocol. |
 | [`CHANGELOG.md`](CHANGELOG.md) | Version history and the reason for each change. |
 
 ## Using it
@@ -150,7 +155,9 @@ The design draws on published analyses of how LLM mathematics fails: taxonomies 
 fabrication and premise smuggling (arXiv 2606.24902), the seven failure modes behind the QED
 multi-agent system (arXiv 2604.24021), the human-in-the-loop theorem-proving workflow of Li et al.
 (arXiv 2512.09443, prompts at `github.com/optsuite/MathResearchPrompts`), and the multi-model
-verification split used by Bolzano (arXiv 2604.16989).
+verification split used by Bolzano (arXiv 2604.16989). The experimental proof-map overlay also
+draws on Zhang et al., [*VALG: An Agentic System for ML Theory Research*](https://arxiv.org/abs/2608.13060)
+([repository](https://github.com/DechenZhang/VALG-ML-Theory-Agent)).
 
 These projects address related problems at different layers:
 
@@ -166,11 +173,24 @@ These projects address related problems at different layers:
 - **Bolzano** uses parallel model generation, verification, summarization, and a persistent store of
   findings that survive verification. This protocol targets the smaller setting of one human and
   one model, and keeps the corresponding state in a compact standing log and clean working surface.
+- **VALG** develops a fixed theorem contract into a typed proof-dependency graph, checks
+  theorem-level feasibility and producer-consumer interfaces, proves claims in dependency order,
+  and routes failures to the smallest derivation, proof-structure, or formulation layer that can
+  repair them. The experimental overlay borrows four human-facing pieces: a dependency map that
+  replaces the Phase 1 list, exact output-versus-consumer forms, a local Phase 2 graph slice, and
+  explicit downstream invalidation plus smallest-target repair diagnosis. These were selected
+  because they expose where the human should inspect the argument without claiming to verify it.
+  It deliberately does not import VALG's multi-agent controller, autopilot mode, branch scheduling,
+  reviewer scores and aggregate acceptance verdicts, retry budgets, four-reviewer stack, or full
+  artifact history. Those mechanisms serve a larger autonomous research system; here they would
+  expand the verification surface, add upkeep, and risk turning model-generated status into a
+  substitute for human judgment. The overlay remains untested and outside `PROTOCOL.md`.
 
-The approaches are complementary. A QED- or Bolzano-like system could supply candidate arguments
-or automated checks inside this protocol, while MathResearchPrompts-style task prompts could be
-used within a phase. The contribution here is the human-facing control layer for settings where no
-verifier can be treated as an oracle and the researcher's attention is the binding constraint.
+The approaches are complementary. QED, Bolzano, or VALG could supply candidate arguments or
+automated checks inside this protocol, while MathResearchPrompts-style task prompts could be used
+within a phase. Their reviewer verdicts would remain inputs to human verification, not an oracle.
+The contribution here is the human-facing control layer for settings where no verifier can be
+treated as an oracle and the researcher's attention is the binding constraint.
 
 ## Contributing
 

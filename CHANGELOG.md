@@ -3,6 +3,19 @@
 This log tracks the protocol itself (`PROTOCOL.md`). Repository-level changes are noted where they
 affect how the protocol is used or distributed.
 
+## Repository, 2026-08-17
+
+- **Experimental proof-map overlay added.** `experiments/proof-map.md` adapts VALG Workflow 2's
+  dependency graph and producer-consumer interface checks to the protocol's one-human, one-model
+  setting. It replaces the Phase 1 list rather than adding another artifact, shows only a local
+  graph slice during Phase 2, and invalidates descendants after an upstream change. The file also
+  defines a small trial record and a promotion criterion tied to observed verification value.
+  `PROTOCOL.md` is unchanged and remains at v0.5.
+- **VALG added to Related work.** The README now links the paper and repository and records why the
+  experiment borrows the proof graph, exact interfaces, local view, invalidation, and localized
+  repair diagnosis, while leaving VALG's orchestration, scoring, reviewer stack, budgets, branching,
+  and artifact history outside this one-human, one-model protocol.
+
 ## Repository, 2026-08-12
 
 - **Artifact renamed from harness to protocol.** This better reflects its scope: a self-contained
