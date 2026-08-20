@@ -25,6 +25,17 @@ affect how the protocol is used or distributed.
   Claude Fable 5 max, plus an observation that model output is the user's working space: clarity and
   navigability preserve attention for questions, ideas, and further reasoning.
 
+## v0.7
+
+- **Case and regime transitions made locally explicit.** At every branch, the derivation restates
+  its defining condition. When the next bound uses a rearrangement of that condition, the
+  rearrangement is shown or named at the transition.
+- This refinement was observed and tested in the maintainer's real workflow. An otherwise clear
+  derivation invoked a "complementary regime" and reached the correct fallback bound, but made the
+  user recover and negate an earlier feasibility condition before the last implication was clear.
+- F8 and `examples/compressed-derivation.md` now record this milder, local form of the same omitted
+  chain that motivated v0.6.
+
 ## v0.6
 
 - **Locally checkable derivations added as a protocol rule.** Calculations now state the subgoal,

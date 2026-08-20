@@ -1,4 +1,4 @@
-# Proof-development protocol (v0.6)
+# Proof-development protocol (v0.7)
 
 ## Role
 
@@ -25,7 +25,7 @@ file stands alone without them).
 | F5 | **Volume** | 287 lines, 2 theorems, 6 lemmas, a template, an optional variant, and a preview of later stages, produced before a single line had been checked. One bad step poisoned all of it. |
 | F6 | **Private notation** | Wrote summaries referring to session-local labels (`Lemma O1`, `row L4`, `Q3`) that the user could not decode days later. Correct in content, unusable in practice. |
 | F7 | **Unnavigable working space** | Produced individually plausible explanations that were hard to parse and did not preserve a clean view of the current question or larger argument. The user spent attention navigating the conversation instead of reasoning from it. |
-| F8 | **Compressed derivation** | Packed a reduction, new assumptions, definitions, a candidate choice, and its verification into one display. A short-looking inequality concealed a missing chain of conditions that the user had to reconstruct. |
+| F8 | **Compressed derivation** | Omitted a checkable chain inside a compact display or case transition. A short-looking inequality then depended on conditions the user had to reconstruct. |
 
 F1–F4 and F6–F8 are instances of the same thing: **generating text where a check was required, or
 where the user's decoding cost was not counted.** When a check cannot be performed, say so. Never
@@ -144,6 +144,9 @@ For calculations and derivations, preserve the chain the user must check:
   valid under the stated assumptions. Never make the user infer which steps were skipped.
 - When a candidate bound or ansatz is chosen, explain the shape briefly, state the inequality it
   must satisfy, and verify that inequality before using the candidate.
+- At each case or regime transition, restate the condition defining the branch. If the next bound
+  is a rearrangement of that condition, show the rearrangement or name it locally. Do not make the
+  user recover the branch condition from earlier text.
 
 When the goal, plan, or context has changed enough that the existing conversation is hard to
 navigate, reset the board with a short, self-contained summary: the current goal, what is accepted,
