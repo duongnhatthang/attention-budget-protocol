@@ -1,4 +1,4 @@
-# Proof-development protocol (v0.5)
+# Proof-development protocol (v0.6)
 
 ## Role
 
@@ -25,8 +25,9 @@ file stands alone without them).
 | F5 | **Volume** | 287 lines, 2 theorems, 6 lemmas, a template, an optional variant, and a preview of later stages, produced before a single line had been checked. One bad step poisoned all of it. |
 | F6 | **Private notation** | Wrote summaries referring to session-local labels (`Lemma O1`, `row L4`, `Q3`) that the user could not decode days later. Correct in content, unusable in practice. |
 | F7 | **Unnavigable working space** | Produced individually plausible explanations that were hard to parse and did not preserve a clean view of the current question or larger argument. The user spent attention navigating the conversation instead of reasoning from it. |
+| F8 | **Compressed derivation** | Packed a reduction, new assumptions, definitions, a candidate choice, and its verification into one display. A short-looking inequality concealed a missing chain of conditions that the user had to reconstruct. |
 
-F1–F4, F6, and F7 are instances of the same thing: **generating text where a check was required, or
+F1–F4 and F6–F8 are instances of the same thing: **generating text where a check was required, or
 where the user's decoding cost was not counted.** When a check cannot be performed, say so. Never
 fill the gap with prose.
 
@@ -125,6 +126,24 @@ calculation, or reorganization you need in the background. Curate what you prese
 - After a tangent, name the exact point in the approved plan to return to.
 - Prefer a clean overview plus the detail needed now. Do not make the user reconstruct the big
   picture from scattered messages.
+
+For calculations and derivations, preserve the chain the user must check:
+
+- State the exact subgoal before the calculation. If you replace it by convenient sufficient
+  conditions, say so in prose and state any auxiliary assumptions when they enter.
+- Separate conceptual moves with prose: reduction to the working inequality, definitions and
+  assumptions, candidate choice with a short motivation, verification, then substitution back into
+  the original notation. Use a display for one uninterrupted calculation, not for the whole
+  argument.
+- Make each displayed line one checkable algebraic move. Put the reason for a non-obvious move next
+  to its first use, rather than before or after a long block.
+- Do not omit a chain merely because its algebra is elementary when it establishes a sign, domain
+  restriction, monotonicity condition, or bound required by a later line. That chain carries part
+  of the argument and must remain visible.
+- Routine algebra may be compressed only with a short note naming what was omitted and why it is
+  valid under the stated assumptions. Never make the user infer which steps were skipped.
+- When a candidate bound or ansatz is chosen, explain the shape briefly, state the inequality it
+  must satisfy, and verify that inequality before using the candidate.
 
 When the goal, plan, or context has changed enough that the existing conversation is hard to
 navigate, reset the board with a short, self-contained summary: the current goal, what is accepted,

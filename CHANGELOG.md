@@ -25,6 +25,18 @@ affect how the protocol is used or distributed.
   Claude Fable 5 max, plus an observation that model output is the user's working space: clarity and
   navigability preserve attention for questions, ideas, and further reasoning.
 
+## v0.6
+
+- **Locally checkable derivations added as a protocol rule.** Calculations now state the subgoal,
+  separate conceptual moves with prose, explain candidate choices, and verify a candidate before
+  using it. Displays contain uninterrupted calculations rather than an entire argument.
+- **The compression boundary is explicit.** Routine algebra may be shortened only with a local note
+  naming what was skipped and why it is valid. A chain that establishes a sign, domain restriction,
+  monotonicity condition, or later bound must remain visible even when its algebra is elementary.
+- Added F8 to the compact failure table and `examples/compressed-derivation.md` to the archive. The
+  observed failure was a compact derivation whose apparently simple inequality depended on a
+  missing chain of assumptions and bounds.
+
 ## v0.5
 
 - **Clean working surface added as a protocol rule.** The agent may explore freely in the
